@@ -1,0 +1,8 @@
+body {
+    font-family: 'Gaegu', cursive;
+}
+
+.round {
+    border: 1px solid black;
+    border-radius: 75px;
+}

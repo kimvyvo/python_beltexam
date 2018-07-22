@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>Belt Exam</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <link rel="stylesheet" href="static/logreg/css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Gaegu:700" rel="stylesheet">
+    </head>
+    <body class='text-center text-light bg-dark p-4'>
+        <h1>Welcome to Kim Vy's Python Belt Exam!</h1>
+        <p class='mb-4'>Want to see more? Login or register below!</p>
+        <div class='row'>
+            <div class='col'>
+                <div class="shadow-lg col-sm-8 p-3 mx-auto round">
+                    <h2 class='mb-3'>r e g i s t e r</h2>
+                    <div class='text-danger show-sm mb-3 rounded'>
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if 'register' in message.tags %} {{ message }} {% endif %} 
+                        {% endfor %}
+                    {% endif %}
+                    </div>
+                    <form action='/register' method='post'>
+                    {% csrf_token %}
+                        <input class='col-sm-8 mx-auto mb-3 p-2 pl-3 round' type=text name='first_name' value='{{ request.session.first_name }}' placeholder='first name'>
+                        <input class='col-sm-8 mx-auto mb-3 p-2 pl-3 round' type=text name='last_name' value='{{ request.session.last_name }}' placeholder='last name'>
+                        <input class='col-sm-8 mx-auto mb-3 p-2 pl-3 round' type=text name='remail' value='{{ request.session.remail }}' placeholder='email'>
+                        <input class='col-sm-8 mx-auto mb-3 p-2 pl-3 round' type=password name='password' value='' placeholder='password'>
+                        <input class='col-sm-8 mx-auto mb-3 p-2 pl-3 round' type=password name='confirm_password' value='' placeholder='confirm password'>
+                        <input class='btn btn-info mb-3 mx-auto d-block round' type=submit value='Register'>
+                    </form>
+                </div>
+            </div>
+            <div class='col'>
+                <div class="shadow-lg col-sm-8 p-3 mx-auto round">
+                    <h2 class='mb-3'>l o g i n</h2>
+                    <div class='text-danger show-sm mb-3 rounded'>
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if 'login' in message.tags %} {{ message }} {% endif %} 
+                        {% endfor %}
+                    {% endif %}
+                    </div>
+                    <form action='/login' method='post'>
+                    {% csrf_token %}
+                        <input class='col-sm-8 mx-auto mb-3 p-2 pl-3 round' type=text name='lemail' value='{{ request.session.lemail }}' placeholder='email'>
+                        <input class='col-sm-8 mx-auto mb-3 p-2 pl-3 round' type=password name='password' value='' placeholder='password'>
+                        <input class='btn btn-info mb-3 mx-auto d-block round' type=submit value='Login'>
+                    </form>
+                    <p class='mx-4 mb-3'>
+                    Forgot your username or password? Well too bad!
+                    </p>
+                </div>
+                <img src='/static/logreg/img/friends.png' style='width: 50%;'>
+            </div>
+        </div>
+    </body>
+</html>
